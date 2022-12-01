@@ -1,0 +1,26 @@
+body {
+    margin: 0 auto;
+}
+
+header { 
+    height: 20vh;
+    background-color: lime;
+}
+
+
+main { 
+    height: 70vh;
+}
+
+nav { 
+    background-color: beige;
+}
+
+aside {
+    background-color: beige;
+}
+
+footer { 
+    height: 10vh;
+    background-color: yellow;
+}

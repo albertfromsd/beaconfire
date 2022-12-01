@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4: Application to date my daughter</title>
+
+    <link rel="stylesheet" href="q4.css">
+</head>
+<body>
+    <h1>Application for permission to date my daughter</h1>
+    <form>
+        <div class="'form-personal-details">
+            <h3>Personal Details</h3>
+            
+            <label for="name">Name: </label>
+            <input type="text" name="name">
+            <br>
+
+            <label for="address">Address:</label>
+            <input type="text" name="address">
+            <br>
+
+            <label for="email">E-mail:</label>
+            <input type="email" name="email">
+            <br>
+            
+            <label for="phone">Phone Number:</label>
+            <input type="text" name="phone">
+            <br>
+
+            <label for="iq">IQ:</label>
+            <input type="number" name="iq">
+            <br>
+
+            <label for="gender">Gender: </label><br>
+            <input type="radio" name="gender" value="male">
+            <label for="male">Male</label><br>
+            <input type="radio" name="gender" value="female">
+            <label for="female">Female</label><br>
+            <input type="radio" name="gender" value="other">
+            <label for="other">Other</label><br>
+
+            <label for="date-of-outing">Date of Proposed Outing: </label>
+            <input type="date" name="date-of-outing">
+        </div>
+        <div class="form-checkboxes">
+            <h3>Check all that apply</h3>
+            <input type="checkbox" name="tattoos-piercings">
+            <label for="tattoos-piercings">I have tattoos and/or piercings</label><br>
+
+            <input type="checkbox" name="older">
+            <label for="older">I am more than 2 years older than my daughter</label><br>
+
+            <input type="checkbox" name="weird-car-owner">
+            <label for="weird-car-owner">I own a panel van or V8 ute</label><br>
+
+            <input type="checkbox" name="work-full-time">
+            <label for="work-full-time">I work full-time</label><br>
+
+            <input type="checkbox" name="rich-parents">
+            <label for="rich-parents">My parents are rich</label><br>
+
+            <input type="checkbox" name="well-lit-date">
+            <label for="well-lit-date">Is the date at a well lit public location</label><br>
+        </div>
+
+        <div class="form-political-education">
+            <label for="political-persuasion">Political Persuasion: </label>
+            <select id="political-persuasion" name="political persuasion">
+                <option value="left-wing">Left-Wing</option>
+                <option value="right-wing">Right-Wing</option>
+                <option value="conservative">Conservative</option>
+            </select>
+
+            &nbsp;
+
+            <label for="education">Education Level Completed: </label>
+            <select id="education" name="education">
+                <option value="university">University</option>
+                <option value="high-school">High School</option>
+                <option value="none">None</option>
+            </select>
+        </div>
+
+        <div class="'form-essay">
+            <h3>Essay Section</h3>
+
+            <label for="why">In 50 words or more explain why you want to date my daughter</label><br>
+            <textarea name="why" rows="10" cols="50"></textarea>
+
+            <br>
+
+            <label for="references">Please upload contact details for 2 references</label><br>
+            <textarea name="references" rows="10" cols="50"></textarea>
+
+            <br>
+
+            <label for="upload">Upload Police Clearance Certificate, Bank Statement and Medical Certificates here: </label>
+            <input name="upload" type="file">
+            
+        </div>
+        <button type="submit">Send your application</button>
+    </form>
+</body>
+</html>

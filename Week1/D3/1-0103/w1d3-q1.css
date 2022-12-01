@@ -1,0 +1,46 @@
+* {
+    margin: 0 auto;
+}
+
+.container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    width: 100vw;
+    height: 20vh;
+
+    background-color: lime;
+}
+
+main {
+    width: 100vw;
+    height: 70vh;
+
+    display: flex;
+    flex-flow: row;
+}
+
+nav {
+    flex-grow: 1;
+    background-color: beige;
+}
+
+article {
+    flex-grow: 4;
+}
+
+aside {
+    flex-grow: 1;
+    background-color: beige;
+}
+
+footer {
+    width: 100vw;
+    height: 10vh;
+
+    background-color: yellow;
+}

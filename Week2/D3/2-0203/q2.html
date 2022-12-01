@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W1D3-Q2: Search with Promise</title>
+
+    <link rel="stylesheet" href="q2.css">
+    <script type="module" src="q2-script.js" defer></script>
+</head>
+<body>
+    <main>
+        <form id="user-info-form">
+            <input type="text" id="userId" name="userId">
+            <button type="submit">Search</button>
+            <h3 id="form-error-message"></h3>
+        </form>
+        <table id="user-info-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>E-mail</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Website</th>
+                    <th>Company</th>
+                </tr>
+            </thead>
+            <tbody id="user-info-table-body">
+                
+            </tbody>
+            <tbody id="user-posts-table-body">
+                <tr><th colspan="8">Posts</th></tr>
+            </tbody>
+            <tbody id="user-todos-table-body">
+                <tr><th colspan="8">Todos</th></tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

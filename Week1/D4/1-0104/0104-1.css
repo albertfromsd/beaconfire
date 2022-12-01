@@ -1,0 +1,40 @@
+
+[data-tab-content] {
+    display: none;
+}
+
+.active[data-tab-content] {
+    display: block;
+}
+
+body {
+    padding: 0;
+    margin: 1vh auto;
+
+    width: 98vw;
+    height: 20vh;
+    border: 1px solid black;
+}
+
+.tabs {
+    display: flex;
+    justify-content: flex-start;
+
+    padding: 0;
+    margin: 0;
+
+    border-bottom: 1px solid black;
+}
+
+.tabs button {
+    border: none;
+}
+
+.tab {
+    padding: 10px;
+    background-color: #EEEEEE;
+}
+
+.tab.active {
+    background-color: #CACACA;
+};

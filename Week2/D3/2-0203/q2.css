@@ -1,0 +1,21 @@
+body { 
+    margin: 0 auto;
+}
+main {
+    width: 96vw;
+}
+
+table {
+    width: 96%;
+    border-collapse: collapse;
+
+}
+tbody, td, th{
+    border: .5px solid black;
+}
+.user-posts-title {
+    background-color: beige;
+}
+#form-error-message {
+    color: red;
+}

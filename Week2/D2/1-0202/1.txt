@@ -1,0 +1,4 @@
+a) The console output would be 'you just clicked 4 button'
+ - The loop's exit clause is when i=4, that is the value that will be stored in the global context because of the use of the var declaration and the way it handles hoisting.
+ - To fix this in ES5, you would make this code into an IIFE by wrapping it in parentheses, followed by another pair of parentheses to invoke the expression as a function. This way, the var variable will not be hoisted to the global scope.
+ - In ES6, replace the var keyword with let

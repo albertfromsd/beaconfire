@@ -1,0 +1,22 @@
+body {
+    margin: 1vh auto;
+}
+
+table {
+    width: 90vw;
+    margin: 0 auto;
+}
+
+table, th, td {
+    border: .5px solid black;
+    border-collapse: collapse;
+}
+
+form {
+    margin: 0 auto;
+    width: 90vw;
+}
+
+form label {
+    font-weight: bold;
+}

@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+
+
+.title-container h3 {
+    text-align: center;
+}
+
+.text-container {
+    overflow: scroll;
+}
+
+.poem-title {
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    /* body {
+        flex-flow: col;
+    }
+    .title-container {
+        width: 100vw;
+    } */
+}
+
+@media only screen and (min-width: 1200px) {
+    /* body {
+        flex-flow: row;
+    } */
+}
+
+.title-container {
+    position: sticky;
+    top: 0;
+    left: 0;
+}
