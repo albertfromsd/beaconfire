@@ -43,25 +43,20 @@ function increasingSubsequence( nums ) {
                     if rightNum is greater, slice the array from right+1, and repeat comparison
                         if another rightNum is found that is larger than leftNum, return false 
     */
-    if( nums.length < 2 ) return false;
-
-    let numsCopy = nums.slice(0), wasNumFound = false;
-    console.log( {numsCopy} );
-    while( numsCopy.length > 1 ) {
-        rightNum = numsCopy.pop();
-        const leftNum = numsCopy[numsCopy.length-1];
-        
-        if( leftNum < rightNum ) continue;
-        else if( wasNumFound ) {
-            console.log( 'numwasfound', {leftNum, rightNum, numsCopy} );
+   if( nums.length < 2 ) return false;
+   let wasNumChanged = false;
+    for( let i = 1; i < nums.length; i++ ) {
+        if( nums[i-1] < nums[i] ) {
+            continue;
+        } else if( wasNumChanged ) {
+            console.log( {nums} );
             return false;
+        } else if( !wasNumChanged ) {
+            nums[i-1] = nums[i-2];
+            wasNumChanged = true;
         }
-
-        console.log( 'firstnumfound', {leftNum, rightNum, numsCopy} );
-        // bug on test5 because losing the last array value and cant compare to next value
-        wasNumFound = true;
-        numsCopy[numsCopy.length-1] = rightNum;
     }
+    console.log({nums})
     return true;
 }
 
@@ -72,9 +67,13 @@ const test2 = [2, 3, 6, 4, 5, 9] //    Output: true
 const test3 = [2, 2, 2] //    Output: false
 const test4 = [ 1, 9, 8, 10, 11, 12 ] // output: true
 const test5 = [105,924,32,968] // true
+const test6 = [1, 2, 10, 5, 7]; // true
+const test7 = [2, 3, 1, 2] // false
 
 // console.log( increasingSubsequence(test1) );
 // console.log( increasingSubsequence(test2) );
 // console.log( increasingSubsequence(test3) );
 // console.log( increasingSubsequence(test4) );
-console.log( increasingSubsequence(test5) );
+// console.log( increasingSubsequence(test5) );
+console.log( increasingSubsequence(test6) );
+console.log( increasingSubsequence(test7) );

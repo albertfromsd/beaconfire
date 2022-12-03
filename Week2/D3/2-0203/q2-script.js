@@ -1,8 +1,6 @@
 const form = document.getElementById("user-info-form");
 const userInfoTableBody = document.getElementById("user-info-table-body");
 const userPostsTableBody = document.getElementById("user-posts-table-body");
-console.log( {userPostsTableBody} );
-
 const userTodosTableBody = document.getElementById("user-todos-table-body");
     
 
@@ -22,8 +20,8 @@ form.addEventListener("submit", e => {
         return Promise.all(res.map( r => r.json() ))
     } ).then(([userInfo, userPosts, userTodos]) => {
         console.log( {userInfo, userPosts, userTodos} );
-        createUserRow(userInfo);
         
+        createUserRow(userInfo);
         userPosts.map( post => createPostRow(post) );
         userTodos.map( todo => createTodoRow(todo) );
     }).catch( e => {
@@ -42,6 +40,7 @@ function createUserRow( user ) {
     } = user;
 
     const newRow = userInfoTableBody.insertRow(-1);
+    newRow.add("user-id", id)
     newRow.innerHTML = `
         <td>${id}</td>
         <td>${name}</td>
