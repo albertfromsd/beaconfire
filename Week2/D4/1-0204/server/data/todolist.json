@@ -1,23 +1,14 @@
 [
   {
-    "title": "finish homework",
-    "description": "for school",
-    "status": "In Progress",
-    "priority": "High",
-    "timestamp": "null"
-  },
-  {
     "title": "wash car",
-    "description": "dirty car",
-    "status": "In Progress",
-    "priority": "Low",
-    "timestamp": "null"
+    "description": "wet",
+    "status": "in progress",
+    "priority": "low"
   },
   {
-    "title": "test2",
-    "description": "test2",
-    "status": "test2",
-    "priority": "test2",
-    "timestamp": "2022-12-03T09:44:41.212Z"
+    "title": "do homework",
+    "description": "school",
+    "status": "in progress",
+    "priority": "high"
   }
 ]
