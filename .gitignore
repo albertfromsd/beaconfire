@@ -1,5 +1,7 @@
 *.zip
 *.docx
 
+
+**/node_modules
 **/playground
 **/solo
