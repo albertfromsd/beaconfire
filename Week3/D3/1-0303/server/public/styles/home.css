@@ -16,12 +16,12 @@ td input, td select {
     width: 98%;
 }
 
-.todolist-table-action-buttons {
+.todolist-table-actions {
     display: flex;
     flex-flow: row;
     justify-content: flex-start;
 }
 
-.todolist-table-action-buttons button {
+.todolist-table-actions button {
     margin: 0 .3rem
 }

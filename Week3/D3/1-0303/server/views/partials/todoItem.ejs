@@ -3,7 +3,7 @@
   <td> <%= description %> </td>
   <td> <%= priority %> </td>
   <td> <%= status %> </td>
-  <td class="todolist-table-action-buttons">
+  <td class="todolist-table-actions">
     <button 
       id="edit-btn-<%-idx%>"
       class="edit-btn"
@@ -21,8 +21,10 @@
   </td>
 </tr>
 <tr class="todolist-table-row item-edit hidden" id="edit-<%= idx %>">
-  <form action="/todo/todolist?_method=PUT" method="post">
-    <input type="hidden" name="_method" value="PUT"/>
+
+  <form action="/todo/todolist?_method=PUT" method="PUT">
+    <input type="hidden" name="_method" value="POST"/>
+
     <input type="hidden" name="_id" value="<%= idx %>"/>
     <td> 
       <input type="text" name="title" value="<%= title %>" />
@@ -43,7 +45,7 @@
         <option value="in-progress">In Progress</option>
       </select>
     </td>
-    <td class="todolist-table-action-buttons">
+    <td class="todolist-table-actions">
       <button 
         id="save-btn-<%= idx %>"
         class="save-btn"

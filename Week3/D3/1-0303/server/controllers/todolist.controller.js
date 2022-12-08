@@ -56,6 +56,8 @@ module.exports.postTodo = async ( req, res ) => {
 
 
 module.exports.updateTodo = async ( req, res ) => {
+    const { _id } = req.body;
+    console.log( {_id} );
     const { filename } = req.params;
     const filepath = path.join(`${__dirname}/../todo/`, `${filename}` + '.json');
 
