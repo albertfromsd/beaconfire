@@ -3,7 +3,7 @@
   <td> <%= description %> </td>
   <td> <%= priority %> </td>
   <td> <%= status %> </td>
-  <td>
+  <td class="todolist-table-action-buttons">
     <button 
       id="edit-btn-<%-idx%>"
       class="edit-btn"
@@ -11,13 +11,21 @@
     >
         Edit
     </button>
-    <button onclick="deleteRow('<%= idx %>')" >Delete</button>
+    <form action="/todo/todolist" method="POST">
+      <input type="hidden" name="_method" value="DELETE"/>
+      <input type="hidden" name="_id" value="<%= idx %>"/>
+      <button onclick="deleteRow('<%= idx %>')" >
+        Delete
+      </button>
+    </form>
   </td>
 </tr>
 <tr class="todolist-table-row item-edit hidden" id="edit-<%= idx %>">
   <form action="/todo/todolist?_method=PUT" method="post">
+    <input type="hidden" name="_method" value="PUT"/>
+    <input type="hidden" name="_id" value="<%= idx %>"/>
     <td> 
-      <input type="text" name="title" value="<%= title %>">
+      <input type="text" name="title" value="<%= title %>" />
     </td>
     <td> 
       <input type="text" name="description" value="<%= description %>">
@@ -35,7 +43,7 @@
         <option value="in-progress">In Progress</option>
       </select>
     </td>
-    <td>
+    <td class="todolist-table-action-buttons">
       <button 
         id="save-btn-<%= idx %>"
         class="save-btn"
