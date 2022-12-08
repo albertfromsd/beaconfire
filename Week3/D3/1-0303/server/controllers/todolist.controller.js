@@ -6,8 +6,8 @@ module.exports.getTodoList = async ( req, res ) => {
     const filepath = path.join(`${__dirname}/../todo/`, `${filename}` + '.json');
 
     try {
-        const todoList = JSON.parse( await fs.readFile(filepath) );
-        res.render('home', {todoList} );
+        const todoList = JSON.parse( await fs.readFile(filepath, "utf-8") );
+        res.status(200).render('home', {todoList, message: null} );
     } catch (e){
         console.log('e', e);
         res.status(400);
@@ -36,13 +36,13 @@ module.exports.postTodo = async ( req, res ) => {
         try {
             const json = JSON.parse(await fs.readFile( filepath, "utf-8"));
             json.push(data);
-            console.log( {json} );
+            
             await fs.writeFile(filepath, JSON.stringify(json, null, 2));
         } catch(e) {
             await fs.writeFile(filepath, JSON.stringify([data], null, 2));
         }
         const todoList = JSON.parse(await fs.readFile( filepath, "utf-8"));
-        res.render('home', {todoList});
+        res.render('home', {todoList, message: "Successfully created todo item!"});
     } catch(e) {
         // if erorr is 400 message, user is missing an arugment
         // else it is a server error
@@ -56,25 +56,24 @@ module.exports.postTodo = async ( req, res ) => {
 
 
 module.exports.updateTodo = async ( req, res ) => {
-    const { _id } = req.body;
-    console.log( {_id} );
+    const { _id, title, description, status, priority } = req.body;
     const { filename } = req.params;
     const filepath = path.join(`${__dirname}/../todo/`, `${filename}` + '.json');
 
     try {
-        if( !req.body.title ) throw new Error(400);
-        const updateKeys = [ 'title', 'description', 'status', 'priority' ];
-        const todolist = JSON.parse( await fs.readFile( filepath, "utf-8" ));
-        for( const todo of todolist ) {
-            if( todo['title'] === req.body.title ) {
-                for( const key of updateKeys ) {
-                    if( req.body[key] !== undefined ) todo[key] = req.body[key];
-                }
-            }
-        }
+        const todoList = JSON.parse( await fs.readFile( filepath, "utf-8" ));
+        if( _id === undefined || _id >= todoList.length ) throw new Error(400);
+        
+        todoList[_id]["title"] = title;
+        todoList[_id]["description"] = description;
+        todoList[_id]["priority"] = priority;
+        todoList[_id]["status"] = status;
 
-        await fs.writeFile( filepath, JSON.stringify(todolist, null, 2));
-        res.status(400).json(todolist);
+        JSON.stringify(todoList, null, 2);
+        await fs.writeFile( filepath, JSON.stringify(todoList, null, 2));
+
+        const newList = JSON.parse(await fs.readFile( filepath, "utf-8"));
+        res.status(200).render('home',{todoList: newList, message: "Successfully updated todo item!"});
     } catch(e) {
         if( e.message === String('400') ) res.status(400).send('Missing at least 1 parameter')
         else res.status(500).send("Server error");   
@@ -84,16 +83,17 @@ module.exports.updateTodo = async ( req, res ) => {
 
 module.exports.deleteTodo = async ( req, res ) => {
     const { _id } = req.body;
+    
     const { filename } = req.params;
     const filepath = path.join(`${__dirname}/../todo/`, `${filename}` + '.json');
     try {
-        if( !title ) throw new Error(400);
-        const todolist = JSON.parse( await fs.readFile( filepath, "utf-8" ));
-        // const newList = todolist.filter( todo => todo.title !== title )
+        if( _id === undefined ) throw new Error(400);
+        const todoList = JSON.parse( await fs.readFile( filepath, "utf-8" ));        // const newList = todolist.filter( todo => todo.title !== title )
         const newList = todoList.slice(0, _id).concat(todoList.slice(_id+1));
 
         await fs.writeFile( filepath, JSON.stringify(newList, null, 2));
-        res.status(400).json(newList);
+        
+        res.status(400).render( 'home', {todoList: newList, message: "Successfully deleted!"} )
     } catch(e) {
         if( e.message === String('400') ) res.status(400).send('Missing title')
         else res.status(500).send("Server error");   

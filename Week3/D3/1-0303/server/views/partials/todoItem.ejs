@@ -11,10 +11,9 @@
     >
         Edit
     </button>
-    <form action="/todo/todolist" method="POST">
-      <input type="hidden" name="_method" value="DELETE"/>
+    <form action="/todo/todolist?_method=DELETE" method="POST">
       <input type="hidden" name="_id" value="<%= idx %>"/>
-      <button onclick="deleteRow('<%= idx %>')" >
+      <button type="submit" >
         Delete
       </button>
     </form>
@@ -22,27 +21,25 @@
 </tr>
 <tr class="todolist-table-row item-edit hidden" id="edit-<%= idx %>">
 
-  <form action="/todo/todolist?_method=PUT" method="PUT">
-    <input type="hidden" name="_method" value="POST"/>
-
+  <form action="/todo/todolist?_method=PUT" method="POST">
     <input type="hidden" name="_id" value="<%= idx %>"/>
     <td> 
-      <input type="text" name="title" value="<%= title %>" />
+      <input type="text" name="title" value="<%= title %>" required/>
     </td>
     <td> 
-      <input type="text" name="description" value="<%= description %>">
+      <input type="text" name="description" value="<%= description %>" required>
     </td>
     <td> 
-      <select id="todo-form-priority" name="priority" value="<%= priority %>">
-        <option value="high">High</option>
-        <option value="normal">Normal</option>
-        <option value="low">Low</option>
+      <select id="todo-form-priority" name="priority" required>
+        <option value="High">High</option>
+        <option value="Normal" selected>Normal</option>
+        <option value="Low">Low</option>
       </select>
     </td>
     <td> 
-      <select id="todo-form-status" name="status" value="<%= status %>">
-        <option value="completed">Completed</option>
-        <option value="in-progress">In Progress</option>
+      <select id="todo-form-status" name="status" required>
+        <option value="Completed">Completed</option>
+        <option value="In Progress" selected>In Progress</option>
       </select>
     </td>
     <td class="todolist-table-actions">
