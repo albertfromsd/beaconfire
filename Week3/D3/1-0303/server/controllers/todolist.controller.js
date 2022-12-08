@@ -1,13 +1,13 @@
 const fs = require("fs").promises;
 const path = require("path");
 
-module.exports.getTodo = async ( req, res ) => {
+module.exports.getTodoList = async ( req, res ) => {
     const { filename } = req.params;
-    const filepath = path.join(`${__dirname}/../data/`, `${filename}` + '.json');
+    const filepath = path.join(`${__dirname}/../todo/`, `${filename}` + '.json');
 
     try {
-        const data = JSON.parse( await fs.readFile(filepath) );
-        res.status(200).json(data);
+        const todoList = JSON.parse( await fs.readFile(filepath) );
+        res.render('home', {todoList} );
     } catch (e){
         console.log('e', e);
         res.status(400);
@@ -17,7 +17,7 @@ module.exports.getTodo = async ( req, res ) => {
 module.exports.postTodo = async ( req, res ) => {
     const { title, description, status, priority } = req.body;
     const { filename } = req.params;
-    const filepath = path.join(`${__dirname}/../data/`, `${filename}`);
+    const filepath = path.join(`${__dirname}/../todo/`, `${filename}` + '.json');
     
     const timestamp = new Date()
     const data = {
@@ -39,20 +39,25 @@ module.exports.postTodo = async ( req, res ) => {
             console.log( {json} );
             await fs.writeFile(filepath, JSON.stringify(json, null, 2));
         } catch(e) {
-            await fs.writeFile(filepath, JSON.stringify(data, null, 2))
+            await fs.writeFile(filepath, JSON.stringify([data], null, 2));
         }
+        const todoList = JSON.parse(await fs.readFile( filepath, "utf-8"));
+        res.render('home', {todoList});
     } catch(e) {
         // if erorr is 400 message, user is missing an arugment
         // else it is a server error
-        if( e.message === String('400') ) res.status(400).send('Missing at least 1 parameter')
-        else res.status(500).send("Server error");   
+        if( e.message === String('400') ) {
+            res.status(400).send('Missing at least 1 parameter');
+        } else {
+            res.status(500).send("Server error");   
+        }
     }
 }
 
 
 module.exports.updateTodo = async ( req, res ) => {
     const { filename } = req.params;
-    const filepath = path.join(`${__dirname}/../data/`, `${filename}`);
+    const filepath = path.join(`${__dirname}/../todo/`, `${filename}` + '.json');
 
     try {
         if( !req.body.title ) throw new Error(400);
@@ -76,13 +81,14 @@ module.exports.updateTodo = async ( req, res ) => {
 }
 
 module.exports.deleteTodo = async ( req, res ) => {
-    const { title } = req.body;
+    const { _id } = req.body;
     const { filename } = req.params;
-    const filepath = path.join(`${__dirname}/../data/`, `${filename}`);
+    const filepath = path.join(`${__dirname}/../todo/`, `${filename}` + '.json');
     try {
         if( !title ) throw new Error(400);
         const todolist = JSON.parse( await fs.readFile( filepath, "utf-8" ));
-        const newList = todolist.filter( todo => todo.title !== title )
+        // const newList = todolist.filter( todo => todo.title !== title )
+        const newList = todoList.slice(0, _id).concat(todoList.slice(_id+1));
 
         await fs.writeFile( filepath, JSON.stringify(newList, null, 2));
         res.status(400).json(newList);

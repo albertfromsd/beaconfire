@@ -1,0 +1,24 @@
+
+    <form id="todolist-form" action="/todo/todolist" method="post">
+        <h3>Create Todo Item</h3>
+        <label for="todo-form-title" name="title">Title</label>
+        <input type="text" id="todo-form-title" name="title">
+  
+        <label for="todo-form-description" name="description">Description</label>
+        <input type="text" id="todo-form-description" name="description">
+        <br>
+        <label for="todo-form-priority" name="priority">Priority</label>
+        <select id="todo-form-priority" name="priority">
+          <option value="high">High</option>
+          <option value="normal">Normal</option>
+          <option value="low">Low</option>
+        </select>
+  
+        <label for="todo-form-status" name="status">Status</label>
+        <select id="todo-form-status" name="status">
+          <option value="completed">Completed</option>
+          <option value="in-progress">In Progress</option>
+        </select>
+  
+        <button type="submit">Create Todo Item</button>
+    </form>
