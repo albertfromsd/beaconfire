@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const methodOverride = require('method-override');
 const path = require('path');
 // const router = express.Router();
 
@@ -8,6 +9,7 @@ const path = require('path');
 app.use('/', express.json()); // parse requests with JSON payload/body
 app.use('/public', express.static(path.join(__dirname, '/public'))); // serve static files
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 // app.use(express.methodOverride());
 
 

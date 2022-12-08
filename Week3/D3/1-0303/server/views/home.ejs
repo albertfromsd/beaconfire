@@ -6,6 +6,15 @@
 
 <main>
   <div>
+<h3>
+  <%  if( message != null ) { %> 
+    <%= message %>
+  <% } else { %> 
+    &nbsp;
+  <% } %> 
+
+</h3>
+    
 
     <%- include("partials/todoForm.ejs") %>
 
@@ -26,8 +35,6 @@
           <% }) %>
       </tbody>
     </table>
-
-    <button id="req">Send Request</button>
 
     <hr>
     <%# ------------------------------------------------------------------------------ %>
