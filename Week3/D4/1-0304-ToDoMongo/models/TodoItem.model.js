@@ -5,14 +5,14 @@ const TodoItemSchema = new mongoose.Schema({
         type: String,
         required: [
             true,
-            "Title is required"
+            "Title is required."
         ],
     },
     description: {
         type: String,
         required: [
             true,
-            "Description is required"
+            "Description is required."
         ],
     },
     status: {
@@ -21,14 +21,14 @@ const TodoItemSchema = new mongoose.Schema({
         default: "In Progress",
         required: [
             true,
-            "Completion status must be indicated as either 'Completed' or 'In Progress'"        ]
+            "Completion status must be indicated as either 'Completed' or 'In Progress'."        ]
     },
     priority: {
         type: String,
         enum: ["High", "Normal", "Low"],
         required: [
             true,
-            "Priority must be indicated as 'High', 'Normal', or 'Low'"
+            "Priority must be indicated as 'High', 'Normal', or 'Low'."
         ]
     },
 }, {timestamps: true});
