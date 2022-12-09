@@ -72,7 +72,7 @@ td select {
 .todolist-table-actions {
     display: flex;
     flex-flow: row;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .todolist-table-actions button {

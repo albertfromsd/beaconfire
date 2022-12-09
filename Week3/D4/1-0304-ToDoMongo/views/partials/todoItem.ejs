@@ -52,28 +52,28 @@
     </td>
     <td> 
       <select id="todo-form-priority" name="priority" required>
-        <option value="High" <%= priority === "High" ? `selected` : null %> >High</option>
-        <option value="Normal" <%= priority === "Normal" ? `selected` : null %> >Normal</option>
-        <option value="Low" <%= priority === "Low" ? `selected` : null %> >Low</option>
+        <option value="High">High</option>
+        <option value="Normal" selected>Normal</option>
+        <option value="Low">Low</option>
       </select>
     </td>
     <td> 
       <select id="todo-form-status" name="status" required>
-        <option value="Completed" <%= statusClass ? `selected` : null%> >Completed</option>
-        <option value="In Progress" <%= !statusClass ? `selected` : null%> >In Progress</option>
+        <option value="Completed">Completed</option>
+        <option value="In Progress" selected>In Progress</option>
       </select>
     </td>
     <td class="todolist-table-actions">
       <button 
         id="save-btn-<%= idx %>"
-        class="save-btn btn btn-primary"
+        class="save-btn"
         type="submit"
       >
         Save
       </button>
       <button
         id="cancel-edit-btn-<%= idx %>"
-        class="cancel-edit-btn btn btn-warning"
+        class="cancel-edit-btn"
         type="button"
         onclick="toggleRow('<%= idx %>')"
       >

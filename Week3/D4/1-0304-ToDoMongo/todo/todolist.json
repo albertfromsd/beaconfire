@@ -9,7 +9,7 @@
   {
     "title": "Todo Item #3",
     "description": "Description #3",
-    "status": "Completed",
+    "status": "In Progress",
     "priority": "Low"
   },
   {
@@ -22,13 +22,12 @@
     "title": "Todo Item #5",
     "description": "Description #5",
     "status": "In Progress",
-    "priority": "High",
-    "timestamp": "2022-12-09T08:15:59.190Z"
+    "priority": "High"
   },
   {
     "title": "Todo Item #6",
     "description": "Description #6",
-    "status": "Completed",
+    "status": "In Progress",
     "priority": "Low"
   },
   {

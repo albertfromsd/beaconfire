@@ -1,0 +1,44 @@
+<%# Path is relative to this template. Specify variables to pass into the partial %>
+<%- include("partials/header.ejs", {title:"Home"}); %>
+
+<%# Stylesheets only used by this template %>
+<link rel="stylesheet" href="/public/styles/home.css">
+
+<main>
+  <div>
+
+    <%  if( message != null ) { %> 
+          <h3 id="status-msg" class="success"> <%= message %> </h3>
+      <% } else { %> 
+        &nbsp;
+      <% } %> 
+
+
+    <%- include("partials/todoForm.ejs") %>
+
+    <table id="todolist-items-table" class="table">
+      <thead>
+        <caption>Todo List</caption>
+        <tr>
+          <th width="25%">Title</th>
+          <th width="25%">Description</th>
+          <th width="10%">Priority</th>
+          <th width="10%">Status</th>
+          <th width="25%">Action</th>
+        </tr>
+      </thead>
+      <tbody id="todolist-body">
+        <% todoList.forEach(( {title, description, priority, status}, idx )=> { %>
+          <%- include("partials/todoItem.ejs", { title, description, priority, status, idx }) %>
+          <% }) %>
+      </tbody>
+    </table>
+
+    <hr>
+    <%# ------------------------------------------------------------------------------ %>
+    <%# Mixing JS logic into the template %>
+
+</main>
+
+<script src="/public/scripts/home.script.js" type="text/javascript"></script>
+<%- include("partials/footer.ejs"); %>
