@@ -6,6 +6,9 @@ module.exports = function(app) {
     app.put('/todo/:filename', Ctrl.updateTodo);
     app.delete('/todo/:filename', Ctrl.deleteTodo);
 
+    app.post('/todo/seed/:filename', Ctrl.seedTodoList)
+
+
     app.all('*', (req, res) => {
         res.status(400).json({ error: "InvalidURI", description: `The URI ${req.url} is not valid.` });
       });

@@ -1,15 +1,28 @@
+* {
+    margin: 0 auto;;
+}
+
 .hidden {
     display: none;
 }
 
+#status-msg.success {
+    color: blue;
+}
+
+#status-msg.fail {
+    color: red;
+}
+
 table {
-    width: 70vw;
+    width: 75vw;
+    table-layout: fixed;
 }
 
 table, th, td {
     border: 1px solid black;
     padding: .3rem;
-    /* border-collapse: collapse; */
+    overflow: auto;
 }
 
 td input, td select {
