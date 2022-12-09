@@ -6,9 +6,8 @@
 #seed-form {
     width: auto;
     border: 1px solid green;
-    margin: 2vh 20vw  2vh auto;
+    margin: 2vh 20vw 2vh auto;
 }
-
 
 #navbar {
     display: flex;

@@ -28,8 +28,8 @@
         </tr>
       </thead>
       <tbody id="todolist-body">
-        <% todoList.forEach(( {title, description, priority, status}, idx )=> { %>
-          <%- include("partials/todoItem.ejs", { title, description, priority, status, idx }) %>
+        <% todoList.forEach(( {_id, title, description, priority, status} )=> { %>
+          <%- include("partials/todoItem.ejs", { _id, title, description, priority, status }) %>
           <% }) %>
       </tbody>
     </table>
