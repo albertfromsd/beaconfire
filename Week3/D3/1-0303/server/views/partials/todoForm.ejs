@@ -1,24 +1,22 @@
+<form id="todolist-form" action="/todo/todolist" method="post">
+  <h3>Create Todo Item</h3>
+  
+    <label for="todo-form-title" name="title">Title</label>
+    <input type="text" id="todo-form-title" name="title" required>
+    <label for="todo-form-description" name="description">Description</label>
+    <input type="text" id="todo-form-description" name="description" required>
+    <label for="todo-form-priority" name="priority">Priority</label>
+    <select id="todo-form-priority" name="priority" value="normal" required>
+      <option value="high">High</option>
+      <option value="normal" selected>Normal</option>
+      <option value="low">Low</option>
+    </select>
 
-    <form id="todolist-form" action="/todo/todolist" method="post">
-        <h3>Create Todo Item</h3>
-        <label for="todo-form-title" name="title">Title</label>
-        <input type="text" id="todo-form-title" name="title" required>
-  
-        <label for="todo-form-description" name="description">Description</label>
-        <input type="text" id="todo-form-description" name="description" required>
-        <br>
-        <label for="todo-form-priority" name="priority">Priority</label>
-        <select id="todo-form-priority" name="priority" value="normal" required>
-          <option value="high">High</option>
-          <option value="normal" selected>Normal</option>
-          <option value="low">Low</option>
-        </select>
-  
-        <label for="todo-form-status" name="status">Status</label>
-        <select id="todo-form-status" name="status" required>
-          <option value="in-progress" selected>In Progress</option>
-          <option value="completed">Completed</option>
-        </select>
-  
-        <button type="submit">Create Todo Item</button>
-    </form>
+    <label for="todo-form-status" name="status">Status</label>
+    <select id="todo-form-status" name="status" required>
+      <option value="in-progress" selected>In Progress</option>
+      <option value="completed">Completed</option>
+    </select>
+
+    <button type="submit">Create Todo Item</button>
+</form>
