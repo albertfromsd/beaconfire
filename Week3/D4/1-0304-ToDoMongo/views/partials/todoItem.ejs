@@ -8,22 +8,22 @@
   <%  buttonText="Finish" %>
   <%  }%>
 
-<tr class="todolist-table-row item-info <%= statusClass %>" id="info-<%= idx %>">
+<tr class="todolist-table-row item-info <%= statusClass %>" id="info-<%= _id %>">
   <td class="todolist-item-title"> <%= title %> </td>
   <td class="todolist-item-desc"> <%= description %> </td>
   <td> <%= priority %> </td>
   <td> <%= status %> </td>
   <td class="todolist-table-actions">
     <button 
-      id="edit-btn-<%-idx%>"
+      id="edit-btn-<%-_id%>"
       class="edit-btn btn btn-warning"
-      onclick="toggleRow('<%= idx %>')"
+      onclick="toggleRow('<%= _id %>')"
     >
         Edit
     </button>
 
     <form action="/todo/todolist?_method=PUT" method="POST">
-      <input type="hidden" name="_id" value="<%= idx %>"/>
+      <input type="hidden" name="_id" value="<%= _id %>"/>
       <input type="hidden" name="isCompleted" value="<%= isCompleted %>"/>
       <button type="submit" class="btn btn-success">
         <%= buttonText %>
@@ -31,7 +31,7 @@
     </form>
 
     <form action="/todo/todolist?_method=DELETE" method="POST">
-      <input type="hidden" name="_id" value="<%= idx %>"/>
+      <input type="hidden" name="_id" value="<%= _id %>"/>
       <button type="submit" class="btn btn-danger">
         Delete
       </button>
@@ -40,10 +40,10 @@
 
   </td>
 </tr>
-<tr class="todolist-table-row item-edit hidden" id="edit-<%= idx %>">
+<tr class="todolist-table-row item-edit hidden" id="edit-<%= _id %>">
 
   <form action="/todo/todolist?_method=PUT" method="POST">
-    <input type="hidden" name="_id" value="<%= idx %>" />
+    <input type="hidden" name="_id" value="<%= _id %>" />
     <td> 
       <input type="text" name="title" value="<%= title %>" required/>
     </td>
@@ -52,30 +52,30 @@
     </td>
     <td> 
       <select id="todo-form-priority" name="priority" required>
-        <option value="High">High</option>
-        <option value="Normal" selected>Normal</option>
-        <option value="Low">Low</option>
+        <option value="High" <%= priority === "High" ? `selected` : null %> >High</option>
+        <option value="Normal" <%= priority === "Normal" ? `selected` : null %> >Normal</option>
+        <option value="Low" <%= priority === "Low" ? `selected` : null %> >Low</option>
       </select>
     </td>
     <td> 
       <select id="todo-form-status" name="status" required>
-        <option value="Completed">Completed</option>
-        <option value="In Progress" selected>In Progress</option>
+        <option value="Completed" <%= statusClass ? `selected` : null%> >Completed</option>
+        <option value="In Progress" <%= !statusClass ? `selected` : null%> >In Progress</option>
       </select>
     </td>
     <td class="todolist-table-actions">
       <button 
-        id="save-btn-<%= idx %>"
-        class="save-btn"
+        id="save-btn-<%= _id %>"
+        class="save-btn btn btn-primary"
         type="submit"
       >
         Save
       </button>
       <button
-        id="cancel-edit-btn-<%= idx %>"
-        class="cancel-edit-btn"
+        id="cancel-edit-btn-<%= _id %>"
+        class="cancel-edit-btn btn btn-warning"
         type="button"
-        onclick="toggleRow('<%= idx %>')"
+        onclick="toggleRow('<%= _id %>')"
       >
         Cancel
       </button>
