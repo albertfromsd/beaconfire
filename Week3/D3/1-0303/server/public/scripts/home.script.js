@@ -1,7 +1,11 @@
-function deleteRow(idx) {
-    const deadRow = document.getElementById(`${idx}`);
-    deadRow.remove();
-}
+document.addEventListener("DOMContentLoaded", function(event) { 
+    var scrollpos = localStorage.getItem('scrollpos');
+    if (scrollpos) window.scrollTo(0, scrollpos);
+});
+
+window.onbeforeunload = function(e) {
+    localStorage.setItem('scrollpos', window.scrollY);
+};
 
 function toggleRow(idx) {
     const infoRow = document.getElementById(`info-${idx}`);

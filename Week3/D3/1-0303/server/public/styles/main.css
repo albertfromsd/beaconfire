@@ -2,10 +2,16 @@
     margin: 0 auto;
 }
 
-#todolist-form {
-    width: 75vw;
-}
 
 #seed-form {
-    width: 75vw;
+    width: auto;
+    border: 1px solid green;
+    margin: 2vh 20vw  2vh auto;
+}
+
+
+#navbar {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
 }

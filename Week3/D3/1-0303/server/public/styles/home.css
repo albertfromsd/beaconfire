@@ -5,6 +5,9 @@
 .hidden {
     display: none;
 }
+#status-msg {
+    text-align: center;
+}
 
 #status-msg.success {
     color: blue;
@@ -14,27 +17,67 @@
     color: red;
 }
 
-table {
-    width: 75vw;
+table caption {
+    caption-side: top;
+    font-weight: bold;
+    font-size: 3rem;
+    text-align: center;
+}
+
+#todolist-form {
+    width: 60vw;
+    border: 1px solid green;
+}
+
+
+#todolist-form-table {
+    width: 100%;
+}
+
+#todolist-form-table tr td:first-child {
+    text-align: right;
+    font-weight: 600;
+}
+
+#todo-form-submit button {
+    display: block;
+    margin: 0 auto;
+}
+
+#todolist-items-table {
+    width: 60vw;
     table-layout: fixed;
 }
 
-table, th, td {
+.completed {
+    background-color: #CAE4CC;
+}
+
+tr.completed > td.todolist-item-title,
+tr.completed > td.todolist-item-desc {
+    text-decoration: line-through;
+}
+
+/* #todolist-items-table table, th, td {
     border: 1px solid black;
     padding: .3rem;
     overflow: auto;
-}
+} */
 
-td input, td select {
+td input, 
+td select {
     width: 98%;
 }
 
 .todolist-table-actions {
     display: flex;
     flex-flow: row;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 
 .todolist-table-actions button {
-    margin: 0 .3rem
+    margin: 0 .3rem;
+}
+.todolist-table-actions form {
+    margin: 0 .3rem;
 }

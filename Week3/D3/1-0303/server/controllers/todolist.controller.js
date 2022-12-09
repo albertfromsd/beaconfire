@@ -1,6 +1,5 @@
 const fs = require("fs").promises;
 const path = require("path");
-const { formatWithOptions } = require("util");
 
 module.exports.getTodoList = async ( req, res ) => {
     const { filename } = req.params;
@@ -57,27 +56,37 @@ module.exports.postTodo = async ( req, res ) => {
 
 
 module.exports.updateTodo = async ( req, res ) => {
-    const { _id, title, description, status, priority } = req.body;
+    const { _id, title, description, status, priority, isCompleted } = req.body;
     const { filename } = req.params;
     const filepath = path.join(`${__dirname}/../todo/`, `${filename}` + '.json');
 
     try {
         const todoList = JSON.parse( await fs.readFile( filepath, "utf-8" ));
-        if( _id === undefined || _id >= todoList.length ) throw new Error(400);
+        if( !todoList[_id] ) {
+            throw new Error(400);
+        } else if( isCompleted !== undefined ) {
+            todoList[_id]["status"] = isCompleted === "true" 
+                ? "In Progress"
+                : "Completed" 
+        } else {
+            todoList[_id]["title"] = title;
+            todoList[_id]["description"] = description;
+            todoList[_id]["priority"] = priority;
+            todoList[_id]["status"] = status;
+            todoList[_id]["timestamp"] = new Date();
+        }
         
-        todoList[_id]["title"] = title;
-        todoList[_id]["description"] = description;
-        todoList[_id]["priority"] = priority;
-        todoList[_id]["status"] = status;
-        todoList[_id]["timestamp"] = new Date();
 
         await fs.writeFile( filepath, JSON.stringify(todoList, null, 2));
 
         const newList = JSON.parse(await fs.readFile( filepath, "utf-8"));
         res.status(200).render('home',{todoList: newList, message: "Successfully updated todo item!"});
     } catch(e) {
-        if( e.message === String('400') ) res.status(400).send('Missing at least 1 parameter')
-        else res.status(500).send("Server error");   
+        if( e.message === String('400') ) {
+            res.status(400).send('Missing at least 1 parameter')
+        } else {
+            res.status(500).send("Server error");   
+        }
     }
     
 }
@@ -88,18 +97,20 @@ module.exports.deleteTodo = async ( req, res ) => {
     const filepath = path.join(`${__dirname}/../todo/`, `${filename}` + '.json');
     
     try {
-        if( _id === undefined ) throw new Error(400);
         const oldList = JSON.parse( await fs.readFile( filepath, "utf-8" ));        
+        if( !oldList[_id] ) throw new Error(400);
     
         oldList.splice(_id, 1);
-        await fs.writeFile( filepath, JSON.stringify(oldList, null, 2), () => {
-        });        
+        await fs.writeFile( filepath, JSON.stringify(oldList, null, 2));        
         
         const todoList = JSON.parse(await fs.readFile(filepath, "utf-8"));
-        res.render('home', {todoList, message: "Successfully deleted item!"});
+        res.status(200).render('home', {todoList, message: "Successfully deleted item!"});
     } catch(e) {
-        if( e.message === String('400') ) res.status(400).send('Invalid ID')
-        else res.status(500).send("Server error");   
+        if( e.message === String('400') ) {
+            res.status(400).send('Invalid ID');
+        } else {
+            res.status(500).send("Server error");   
+        }
     }
 }
 
@@ -116,7 +127,7 @@ module.exports.seedTodoList = async ( req, res ) => {
                 : "High"
         let status = i % 2 === 0    
             ? "In Progress"
-            : "Complete"
+            : "Completed"
 
         const todoItem = {
             title: `Todo Item #${i}`,

@@ -1,21 +1,38 @@
-<tr class="todolist-table-row item-info" id="info-<%= idx %>">
-  <td> <%= title %> </td>
-  <td> <%= description %> </td>
+<% let statusClass, isCompleted, buttonText; %> 
+<% if( status ==="Completed" ) { %>
+<%  statusClass="completed"; %> 
+<%  isCompleted="true"; %> 
+<%  buttonText="Unfinish"; %>  
+<% } else {%>
+  <%  isCompleted="false"; %>
+  <%  buttonText="Finish" %>
+  <%  }%>
+
+<tr class="todolist-table-row item-info <%= statusClass %>" id="info-<%= idx %>">
+  <td class="todolist-item-title"> <%= title %> </td>
+  <td class="todolist-item-desc"> <%= description %> </td>
   <td> <%= priority %> </td>
   <td> <%= status %> </td>
   <td class="todolist-table-actions">
     <button 
       id="edit-btn-<%-idx%>"
-      class="edit-btn"
+      class="edit-btn btn btn-warning"
       onclick="toggleRow('<%= idx %>')"
     >
         Edit
     </button>
 
+    <form action="/todo/todolist?_method=PUT" method="POST">
+      <input type="hidden" name="_id" value="<%= idx %>"/>
+      <input type="hidden" name="isCompleted" value="<%= isCompleted %>"/>
+      <button type="submit" class="btn btn-success">
+        <%= buttonText %>
+      </button>
+    </form>
 
     <form action="/todo/todolist?_method=DELETE" method="POST">
       <input type="hidden" name="_id" value="<%= idx %>"/>
-      <button type="submit" >
+      <button type="submit" class="btn btn-danger">
         Delete
       </button>
     </form>
