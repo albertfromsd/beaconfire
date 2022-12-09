@@ -11,18 +11,22 @@
     >
         Edit
     </button>
+
+
     <form action="/todo/todolist?_method=DELETE" method="POST">
       <input type="hidden" name="_id" value="<%= idx %>"/>
       <button type="submit" >
         Delete
       </button>
     </form>
+    
+
   </td>
 </tr>
 <tr class="todolist-table-row item-edit hidden" id="edit-<%= idx %>">
 
   <form action="/todo/todolist?_method=PUT" method="POST">
-    <input type="hidden" name="_id" value="<%= idx %>"/>
+    <input type="hidden" name="_id" value="<%= idx %>" />
     <td> 
       <input type="text" name="title" value="<%= title %>" required/>
     </td>

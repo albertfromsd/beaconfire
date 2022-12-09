@@ -16,6 +16,7 @@ app.use(methodOverride('_method'));
 // ejs views engine set up
 app.set("views", path.join(__dirname, "/views")); // where template files are located
 app.set("view engine", "ejs"); // default engine, dont need to specify .ejs extension
+app.engine('ejs', require('ejs').__express);
 
 
 // import routes
