@@ -11,7 +11,11 @@ const ArtistSchema = new mongoose.Schema({
     songs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Song'
-    }]
+    }],
+    // followers: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User'
+    // }]
 }, {timestamps: true});
 
 module.exports = ArtistSchema;
