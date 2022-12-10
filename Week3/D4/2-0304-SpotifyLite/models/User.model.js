@@ -7,18 +7,18 @@ const validateEmail = function(email) {
 };
 
 const UserSchema = new mongoose.Schema({
-    firstname: {
-        type: String,
-        required: [true, 'First name is required to register a user']
-    },
-    lastname: {
-        type: String,
-        required: [true, 'Last name is required to register a user']
-    },
     username: {
         type: String,
         unique: true,
         required: [true, 'User name is required to register a user']
+    },
+    artistsFollowed: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Artist'
+    }],
+    songsLiked: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Song'
     },
     email: {
         type: String,
@@ -29,18 +29,10 @@ const UserSchema = new mongoose.Schema({
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
         required: [true, 'Email is required to register a user']
     },
-    password: {
-        type: String,
-        required: [true, 'Password is required to register user']
-    },
-    artistsFollowed: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Artist'
-    }],
-    songsLiked: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Song'
-    }
+    // password: {
+    //     type: String,
+    //     required: [true, 'Password is required to register user']
+    // },
 }, {timestamps: true});
 
 // UserSchema.virtual('passwordConfirmation', {

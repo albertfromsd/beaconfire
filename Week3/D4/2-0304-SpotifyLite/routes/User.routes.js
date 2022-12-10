@@ -1,4 +1,4 @@
-const { UserCtrl } = require('../controllers/User.controller');
+const UserCtrl = require('../controllers/User.controller');
 
 module.exports = function(app) {
     app.get('/user/:id', UserCtrl.getUserByID);

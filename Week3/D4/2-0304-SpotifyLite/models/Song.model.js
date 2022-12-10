@@ -1,4 +1,10 @@
 const mongoose = require('mongoose');
+const { 
+    SongGenreEnums, 
+    SongGenreEnumsArray,
+    SongLanguageEnums,
+    SongLanguageEnumsArray
+} = require('./Song.enums');
 
 const SongSchema = new mongoose.Schema({
     title: {
@@ -8,15 +14,17 @@ const SongSchema = new mongoose.Schema({
     artist: {
         type: mongoose.Schema.Types.ObjectId,
         default: 'Unknown',
-        required: [ true, 'Artist of the song is required' ]
     },
     language: {
         type: String,
+        enum: SongLanguageEnumsArray,
+        default: SongLanguageEnums.Unknown,
         required: [ true, 'Language of the song is required' ]
     },
     genre: {
         type: String,
-        default: 'Unknown',
+        enum: SongGenreEnumsArray,
+        default: SongGenreEnums.Unknown,
         required: [ false ]
     }
 });
