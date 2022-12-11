@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const ArtistSchema = new mongoose.Schema({
+    idx: {
+        type: Number,
+        unique: true,
+        required: [true]
+    },
     name: {
         type: String,
         unique: true,
@@ -13,10 +18,10 @@ const ArtistSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Song'
     }],
-    // followers: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    // }]
+    followers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 }, {timestamps: true});
 
 module.exports = ArtistSchema;
