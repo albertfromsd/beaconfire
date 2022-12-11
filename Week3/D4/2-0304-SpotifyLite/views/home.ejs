@@ -7,14 +7,7 @@
 <main>
   <div>
 
-    <%  if( message != null ) { %> 
-          <h3 id="status-msg" class="success"> <%= message %> </h3>
-      <% } else { %> 
-        &nbsp;
-      <% } %> 
-
-
-    <%- include("partials/songsTable.ejs") %>
+    <%- include("partials/songsTable.ejs", {songs}) %>
 
     <hr>
     <%# ------------------------------------------------------------------------------ %>

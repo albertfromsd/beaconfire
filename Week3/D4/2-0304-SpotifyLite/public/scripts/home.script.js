@@ -7,7 +7,7 @@ window.onbeforeunload = function(e) {
     localStorage.setItem('scrollpos', window.scrollY);
 };
 
-async function toggleLke(id) {
+async function toggleLike(id) {
     const result = await(`/songs/${id}`, {
         method: "PUT",
         headers: {

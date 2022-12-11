@@ -10,31 +10,25 @@
         </tr>
     </thead>
     <tbody>
-        <%= songs.map( (song, i) => { %>
-        <% const {_id, title, artist: { _id: artist_id, name: artistName }, language, genre, liked }%>
+        <% songs.map( song => { %>
+        <%  const {_id, title, artist: { _id: artist_id, name: artistName }, language, genre, usersLiked } = song; %>
             <tr name="song" value="<%=_id%>" id="<%= _id %>">
-                <td name="title" value="<%= title %>"> 
-                    <%= title %> 
-                </td>    
-                <td name="artist" value="<%= artist_id %>"> 
-                    <%= artistName %> 
-                </td>    
-                <td name="language" value="<%= language %>"> 
-                    <%= language %> 
-                </td>    
-                <td name="genre" value="<%= genre %>"> 
-                    <%= genre %> 
-                </td>    
+                <td name="title" value="<%= title %>"> <%= title %> </td>    
+                <td name="artist" value="<%= artist_id %>"> <%= artistName %> </td>    
+                <td name="language" value="<%= language %>"> <%= language %> </td>    
+                <td name="genre" value="<%= genre %>"> <%= genre %> </td>    
                 <td> 
-                    <%= let likeStatus = liked ? `btn-danger` : `btn-light` %>
-                    <%= let likeText = liked ? `Liked Song` : `Unlike Song` %>
+                    <% let liked = usersLiked.indexOf(user_id) === -1 ? false : true %>
+                    <% let likeStatus = liked ? `btn-danger` : `btn-light` %>
+                    <% let likeText = liked ? `Liked Song` : `Unlike Song` %>
+                    <% console.log({likeText, liked}) %>
                     <button 
                         id="like-button-<%=_id%>"
                         name="like-button-<%=_id%>"
                         value="<%= liked %>"
                         class="btn <%= likeStatus %>"
                         onclick="toggleLike('<%= _id %>')"
-                    > Like
+                    > <%= likeText %>
                     </button>    
                 </td>    
             </tr>

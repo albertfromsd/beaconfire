@@ -1,6 +1,7 @@
+const { User } = require('../models/User.model');
+const { Artist } = require("../models/Artist.model");
 const { Song } = require('../models/Song.model');
 const { SongGenres, SongLanguages } = require('../models/Song.enums');
-const { User } = require('../models/User.model');
 
 module.exports.createSong = async( req, res ) => {
 
@@ -18,17 +19,14 @@ module.exports.getAllSongs = async( req, res ) => {
             try {
                 const artist = await Artist.findOne({_id: artistID});
                 song.artist = artist;
-                if( song.usersLikeList.indexOf(user_id) !== -1 ) {
-                    song.liked = true;
-                } else {
-                    song.liked = false;
-                }
+
+                console.log({song, artist})
             } catch(e) {
                 console.log(e);
             }
         } );
 
-        res.status(200).render('home', {songs, message: null})
+        res.status(200).render('home', {user_id, songs, message: null})
     } catch(err) {
         console.log(err);
         res.status(500).send("Server error in retrieving all songs")
@@ -74,9 +72,9 @@ module.exports.updateLikedSong = async( req, res ) => {
         await user.save();
         await song.save();
 
-        res.send(200).json({user, song});
+        res.status(200).json({user, song});
     } catch(e) {
-
+        console.log(e);
     }
 };
 
