@@ -19,7 +19,9 @@ app.engine('ejs', require('ejs').__express);
 
 
 // import routes
-require('./routes/todolist.routes')(app);
+require('./routes/User.routes')(app);
+require('./routes/Artist.routes')(app);
+require('./routes/Song.routes')(app);
 
 const PORT = process.env.PORT || 8000;
 const server = app.listen(PORT, () => {
