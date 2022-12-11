@@ -32,7 +32,7 @@ module.exports.updateUser = async( req, res ) => {
 
         res.status(200).send({user});
     } catch(e) {
-
+        res.status(500).send("Server error on user update");
     }
 
 };

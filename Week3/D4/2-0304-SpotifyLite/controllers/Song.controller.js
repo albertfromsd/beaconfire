@@ -77,7 +77,16 @@ module.exports.searchSongsByTitleOrArtist = async( req, res ) => {
         }}).exec();
 
         // iterate over each artist in search results array
-        const songsByArtist = [];
+        const songs = [];
+        for( let i = 0; i < songsByTitle.length; i++ ) {
+            const song = songsByTitle[i];
+            const artist_id = song.artist;
+            const artist = await Artist.findOne({_id: artist_id}).exec();
+            song.artist = artist;
+            songs.push(song);
+            
+        }
+
         for( let i = 0; i < artists.length; i++ ) {
             const artist = artists[i];
             // iterate over each songID found in artist.songs
@@ -85,15 +94,11 @@ module.exports.searchSongsByTitleOrArtist = async( req, res ) => {
                 const songID = artists[i].songs[j]._id;
                 const song = await Song.findOne({_id: songID}).exec();
                 song.artist = artist;
-                songsByArtist.push(song);
+                songs.push(song);
+                
             }
         }
-            
-        const songs = [
-            ...songsByTitle,
-            ...songsByArtist
-        ]
-        console.log({songs})
+        
         res.render('home', {user_id: null, songs, message: `Found ${songs.length} results`});
     } catch(e) {
         console.log(e);
