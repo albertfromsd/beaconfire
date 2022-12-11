@@ -1,8 +1,12 @@
-const SongGenreEnums = {
+function getRandomInt( min=1, max=100 ) {
+    return Math.floor( (Math.random()*(max-min) + min) );  
+} 
+
+const SongGenres = {
     Country: "Country",
     Jazz: "Jazz",
     HipHop: "Hip Hop",
-    RnB: "RnB",
+    RnB: "R&B",
     Folk:"Folk",
     Classical: "Classical",
     Electronic: "Electronic",
@@ -10,11 +14,19 @@ const SongGenreEnums = {
     Rock: "Rock",
     Latin: "Latin",
     Disco: "Disco",
-    Unknown: "Unknown"
+    NA: "N/A"
 };
-const SongGenreEnumsArray = [...Object.values(SongGenreEnums)];
+SongGenres.toArray = function() {
+    return Object.values(this).filter( val => typeof val === 'string' );
+};
+SongGenres.random = function() {
+    const enumsArr = this.toArray();
+    const idx = getRandomInt(0, enumsArr.length-1);
+    return enumsArr[idx];
+}
+// const SongGenreEnumsArray = [...Object.values(SongGenres)];
 
-const SongLanguageEnums = {
+const SongLanguages = {
     English: "English",
     Spanish: "Spanish",
     Portugese: "Portugese",
@@ -24,13 +36,21 @@ const SongLanguageEnums = {
     French: "French",
     Russian: "Russian",
     Arabic: "Arabic",
-    Unknown: "Unknown"
-}
-const SongLanguageEnumsArray = [...Object.values(SongLanguageEnums)];
+};
+SongLanguages.toArray = function() {
+    return Object.values(this).filter( val => typeof val === 'string' );
+};
+SongLanguages.random = function() {
+    const enumsArr = this.toArray();
+    const idx = getRandomInt(0, enumsArr.length-1);
+    return enumsArr[idx];
+};
+
+
+
+// const SongLanguageEnumsArray = [...Object.values(SongLanguageEnums)];
 
 module.exports = { 
-    SongsGenreEnums, 
-    SongsGenreEnumsArray, 
-    SongLanguageEnums, 
-    SongLanguageEnumsArray 
+    SongGenres,
+    SongLanguages,
 };

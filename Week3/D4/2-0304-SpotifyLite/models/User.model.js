@@ -16,23 +16,19 @@ const UserSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Artist'
     }],
-    songsLiked: {
+    songsLiked: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Song'
-    },
+    }],
     email: {
         type: String,
         unique: true,
-        trime: true,
-        lowercase: true,
-        validate: [validateEmail, "Valid email is required"],
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'],
         required: [true, 'Email is required to register a user']
     },
-    // password: {
-    //     type: String,
-    //     required: [true, 'Password is required to register user']
-    // },
+    password: {
+        type: String,
+        required: [true, 'Password is required to register user']
+    },
 }, {timestamps: true});
 
 // UserSchema.virtual('passwordConfirmation', {

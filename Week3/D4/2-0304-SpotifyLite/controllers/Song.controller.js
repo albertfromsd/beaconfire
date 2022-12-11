@@ -1,5 +1,5 @@
 const { Song } = require('../models/Song.model');
-const { SongGenreEnums } = require('../models/Song.enums');
+const { SongGenres, SongLanguages } = require('../models/Song.enums');
 
 module.exports.createSong = async( req, res ) => {
 
