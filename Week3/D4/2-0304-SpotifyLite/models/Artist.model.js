@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const ArtistSchema = new mongoose.Schema({
+    idx: {
+        type: Number,
+        unique: true,
+        required: [true]
+    },
     name: {
         type: String,
         unique: true,

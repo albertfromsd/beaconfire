@@ -8,6 +8,7 @@ const SongSchema = new mongoose.Schema({
     },
     artist: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'Artist',
         default: 'Unknown',
     },
     language: {
@@ -21,7 +22,11 @@ const SongSchema = new mongoose.Schema({
         enum: SongGenres.toArray(),
         default: SongGenres.Unknown,
         required: [ false ]
-    }
+    },
+    usersLiked: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 });
 
 module.exports = SongSchema;

@@ -14,25 +14,7 @@
       <% } %> 
 
 
-    <%- include("partials/todoForm.ejs") %>
-
-    <table id="todolist-items-table" class="table">
-      <thead>
-        <caption>Todo List</caption>
-        <tr>
-          <th width="25%">Title</th>
-          <th width="25%">Description</th>
-          <th width="10%">Priority</th>
-          <th width="10%">Status</th>
-          <th width="25%">Action</th>
-        </tr>
-      </thead>
-      <tbody id="todolist-body">
-        <% todoList.forEach(( {_id, title, description, priority, status} )=> { %>
-          <%- include("partials/todoItem.ejs", { _id, title, description, priority, status }) %>
-          <% }) %>
-      </tbody>
-    </table>
+    <%- include("partials/songsTable.ejs") %>
 
     <hr>
     <%# ------------------------------------------------------------------------------ %>
