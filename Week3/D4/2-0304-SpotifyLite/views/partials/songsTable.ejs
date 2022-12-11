@@ -21,7 +21,7 @@
                     <% let liked = usersLiked.indexOf(user_id) === -1 ? false : true %>
                     <% let likeStatus = liked ? `btn-danger` : `btn-light` %>
                     <% let likeText = liked ? `Liked Song` : `Unlike Song` %>
-                    <% console.log({likeText, liked}) %>
+                    
                     <button 
                         id="like-button-<%=_id%>"
                         name="like-button-<%=_id%>"

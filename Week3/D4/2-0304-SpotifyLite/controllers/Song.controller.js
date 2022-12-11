@@ -38,7 +38,15 @@ module.exports.getSongByID = async( req, res ) => {
 };
 
 module.exports.getSongsByLanguage = async( req, res ) => {
-
+    const {language} = req.query;
+    let targetLang = language.toLowerCase().charAt(0).toUpperCase() + language.slice(1);
+    console.log( {language, targetLang})
+    try {
+        const songs = await Song.find({language: targetLang }).exec();
+        res.render('home', {user_id: null, songs, message: "Successfully found songs by language"});
+    } catch(e) {
+        console.log(e);
+    }
 };
 
 module.exports.getSongsByGenre = async( req, res ) => {
@@ -50,7 +58,39 @@ module.exports.getSongsByArtistID = async( req, res ) => {
 };
 
 module.exports.searchSongsByTitleOrArtist = async( req, res ) => {
+    const { search } = req.params;
+    console.log({search})
+    try {
+        const songsByTitle = await Song.find({title: {
+            '$regex': `${search}`, $options: 'i'
+        }}).exec();
+        const artists = await Artist.find({name: {
+            '$regex': `${search}`, $options: 'i'
+        }}).exec();
 
+        // iterate over each artist in search results array
+        const songsByArtist = [];
+        for( let i = 0; i < artists.length; i++ ) {
+            const artist = artists[i];
+            // iterate over each songID found in artist.songs
+            for( let j = 0; j < artists[i].songs.length; j++ ) {
+                const songID = artists[i].songs[j]._id;
+                const song = await Song.findOne({_id: songID}).exec();
+                song.artist = artist;
+                songsByArtist.push(song);
+            }
+        }
+            
+        const songs = [
+            ...songsByTitle,
+            ...songsByArtist
+        ]
+        console.log({songs})
+        res.render('home', {user_id: null, songs, message: `Found ${songs.length} results`});
+    } catch(e) {
+        console.log(e);
+        res.status(500).send("Server error during search")
+    }
 };
 
 module.exports.updateLikedSong = async( req, res ) => {

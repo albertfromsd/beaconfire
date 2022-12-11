@@ -21,7 +21,7 @@ SongGenres.toArray = function() {
 };
 SongGenres.random = function() {
     const enumsArr = this.toArray();
-    const idx = getRandomInt(0, enumsArr.length-1);
+    const idx = getRandomInt(0, enumsArr.length);
     return enumsArr[idx];
 }
 // const SongGenreEnumsArray = [...Object.values(SongGenres)];
@@ -42,7 +42,7 @@ SongLanguages.toArray = function() {
 };
 SongLanguages.random = function() {
     const enumsArr = this.toArray();
-    const idx = getRandomInt(0, enumsArr.length-1);
+    const idx = getRandomInt(0, enumsArr.length);
     return enumsArr[idx];
 };
 
