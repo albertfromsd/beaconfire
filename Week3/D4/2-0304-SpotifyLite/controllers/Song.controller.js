@@ -39,10 +39,10 @@ module.exports.getSongByID = async( req, res ) => {
 
 module.exports.getSongsByLanguage = async( req, res ) => {
     const {language} = req.query;
-    let targetLang = language.toLowerCase().charAt(0).toUpperCase() + language.slice(1);
-    console.log( {language, targetLang})
     try {
-        const songs = await Song.find({language: targetLang }).exec();
+        const songs = await Song.find( {language: {
+            '$regex': `${language}`, $options: 'i'
+        } }).exec();
         res.render('home', {user_id: null, songs, message: "Successfully found songs by language"});
     } catch(e) {
         console.log(e);
@@ -50,7 +50,15 @@ module.exports.getSongsByLanguage = async( req, res ) => {
 };
 
 module.exports.getSongsByGenre = async( req, res ) => {
-
+    const {genre} = req.params;
+    try {
+        const songs = await Song.find({genre: {
+            '$regex': `${genre}`, $options: 'i'
+        } }).exec();
+        res.render('home', {user_id: null, songs, message: "Successfully found songs by language"});
+    } catch(e) {
+        console.log(e);
+    }
 };
 
 module.exports.getSongsByArtistID = async( req, res ) => {

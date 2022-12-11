@@ -10,6 +10,30 @@ module.exports.createUser = async( req, res ) => {
 };
 
 module.exports.updateUser = async( req, res ) => {
+    const {username, email, password, fieldToChange } = req.body;
+
+    const userIdx = 1;
+    try {
+        const user = await User.findOne({idx: userIdx}).exec();
+        switch(fieldToChange) {
+            case 'username':
+                user.username = username;
+                break;
+            case 'email':
+                user.email = email;
+                break;
+            case 'password':
+                user.password = password;
+                break;
+            default:
+                break;
+        }
+        await user.save();
+
+        res.status(200).send({user});
+    } catch(e) {
+
+    }
 
 };
 

@@ -60,7 +60,8 @@ module.exports.createSeedDB = async( req, res ) => {
             const newArtist = await Artist.create({
                 idx: i,
                 name,
-                songs: []
+                songs: [],
+                followers: []
             });
 
             if( !newArtist ) throw new Error(500);
