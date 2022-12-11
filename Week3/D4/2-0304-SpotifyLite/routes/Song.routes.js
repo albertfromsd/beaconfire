@@ -1,4 +1,4 @@
-const { SongCtrl } = require('../controllers/Song.controller');
+const SongCtrl = require('../controllers/Song.controller');
 
 module.exports = function(app) {
     app.get('/songs?language=""', SongCtrl.getSongsByLanguage);
