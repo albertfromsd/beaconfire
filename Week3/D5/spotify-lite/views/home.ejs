@@ -1,0 +1,28 @@
+<%# Path is relative to this template. Specify variables to pass into the partial %>
+<%- include("partials/header.ejs", {title:"Home"}); %>
+
+<%# Stylesheets only used by this template %>
+<link rel="stylesheet" href="/public/styles/home.css">
+
+<main>
+  <div>
+    
+    
+    <button 
+      onclick="toggleLoginReg()" 
+      id="toggle-form-button"
+      name="toggle-form-button" 
+      value="false"> 
+      Toggle Form
+    </button>
+    
+      <%- include("partials/login") %>
+      <%- include("partials/register") %>
+      
+    <hr>
+    <%# ------------------------------------------------------------------------------ %>
+    <%# Mixing JS logic into the template %>
+
+</main>
+<script src="/public/scripts/home.script.js" type="text/javascript"></script>
+<%- include("partials/footer.ejs"); %>

@@ -2,9 +2,15 @@ const express = require('express');
 const app = express();
 const methodOverride = require('method-override');
 const path = require('path');
-require('./config/mongoose.config');
-// const router = express.Router();
 
+const jwt = require('jsonwebtoken');
+
+// cookie parser
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+require('./config/mongoose.config');
+require('dotenv').config({ path: path.join(__dirname, './.env') });
 
 // express middleware set up
 app.use('/', express.json()); // parse requests with JSON payload/body
@@ -23,6 +29,14 @@ require('./routes/User.routes')(app);
 require('./routes/Artist.routes')(app);
 require('./routes/Song.routes')(app);
 require('./routes/Seed.routes')(app);
+
+app.use('/', (req, res) => {
+    res.render('home', {} );
+})
+
+app.all('*', (req, res) => {
+    res.status(400).send("Page not found");
+});
 
 const PORT = process.env.PORT || 8000;
 const server = app.listen(PORT, () => {

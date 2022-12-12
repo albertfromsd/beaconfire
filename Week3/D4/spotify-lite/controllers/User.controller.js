@@ -1,11 +1,56 @@
 const { User } = require('../models/User.model');
 const { Song } = require('../models/Song.model');
 
+const jwt = require('jsonwebtoken');
+const { createToken } = require('../utils/jwt.utils');
+
+const bcrypt = require('bcrypt');
+const saltRounds = process.env.saltRounds;
+
 module.exports.getUserByID = async( req, res ) => {
 
 };
 
 module.exports.createUser = async( req, res ) => {
+    const { username, email, password } = req.body;
+    try {
+        // hash pw
+        const hashedPW = await bcrypt.genSalt(saltRounds, async (err, salt) => {
+            try {
+                await bcrypt.hash(password, saltRounds, ( err, hash ) => {
+                    return hash;
+                });
+            } catch(hashErr) {
+                console.log(hashErr);
+            }
+        } );
+
+        // check if user exists
+        const usernameCheck = await User.findOne({username}).exec();
+        const emailCheck = await User.findOne({email}).exec();
+        if( usernameCheck || emailCheck ) throw new Error(400);
+
+        // create user
+        const newUser = await User.create({
+            username,
+            email,
+            password: hashedPW
+        });
+        if( !newUser ) throw new Error(400);
+        newUser.save();
+
+        
+        res.cookie('token', accessToken, {
+            httpOnly: true,
+            maxAge: 60 * 60 * 25
+        });
+        res.render('home', user);
+    } catch(e) {
+
+    }
+};
+
+module.exports.login = async( req, res ) => {
 
 };
 

@@ -6,14 +6,23 @@
 
 <main>
   <div>
-
-    <%- include("partials/songsTable.ejs", {songs}) %>
-
+    
+    
+    <button 
+      onclick="toggleLoginReg()" 
+      id="toggle-form-button"
+      name="toggle-form-button" 
+      value="false"> 
+      Toggle Form
+    </button>
+    
+      <%- include("partials/login") %>
+      <%- include("partials/register") %>
+      
     <hr>
     <%# ------------------------------------------------------------------------------ %>
     <%# Mixing JS logic into the template %>
 
 </main>
-
 <script src="/public/scripts/home.script.js" type="text/javascript"></script>
 <%- include("partials/footer.ejs"); %>

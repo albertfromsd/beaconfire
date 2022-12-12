@@ -1,6 +1,6 @@
 *.zip
 *.docx
-
+*.env
 
 **/node_modules
 **/playground
