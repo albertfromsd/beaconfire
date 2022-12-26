@@ -1,0 +1,30 @@
+<form id="register-form" action="/user/register" method="post" class="hidden">
+    <table id="register-form-table" class="table">
+      <caption>
+        <h3>Registration Form</h3>
+      </caption>
+      <tr>
+        <td><label for="register-form-username" name="username">Username</label></td>
+        <td><input type="text" id="register-form-username" name="username" required></td>
+      </tr>
+      <tr>
+        <td><label for="register-form-email" name="email">E-mail</label></td>
+        <td><input type="text" id="register-form-email" name="email" required></td>
+      </tr>
+      <tr>
+        <td><label for="register-form-password" name="password">Password</label></td>
+        <td><input type="password" id="register-form-password" name="password" required></td>
+      </tr>
+      <tr>
+        <td><label for="register-form-confirmpw" name="confirmpw">Confirm Password</label></td>
+        <td><input type="password" id="register-form-confirmpw" name="confirmpw" required></td>
+      </tr>
+      <tfoot>
+        <tr id="register-form-submit">
+          <td colspan="2">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>  
+  </form>
