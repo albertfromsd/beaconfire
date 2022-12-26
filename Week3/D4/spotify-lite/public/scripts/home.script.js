@@ -23,14 +23,12 @@ async function toggleLike(id) {
 const toggleBtn = document.getElementById("toggle-form-button");
 toggleBtn.innerText = 'Register Here'
 toggleBtn.addEventListener('click', e => {
-    console.log(toggleBtn.value);
     if( toggleBtn.value === "false" ) {
         toggleBtn.value = 'true';
         toggleBtn.innerText = 'Login Here'
     } else {
         toggleBtn.value = 'false';
         toggleBtn.innerText = 'Register Here'
-        
     }
 })
 

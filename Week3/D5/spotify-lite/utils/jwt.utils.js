@@ -19,6 +19,7 @@ module.exports.authenticateToken = async( req, res, next ) => {
             return next();
         }
     } catch(e) {
-        console.log(e);
+        res.clearCookie("token");
+        return res.redirect("/");
     }
 }

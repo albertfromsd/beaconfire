@@ -28,7 +28,7 @@ module.exports.createUser = async( req, res ) => {
         // check if user exists
         const usernameCheck = await User.findOne({username}).exec();
         const emailCheck = await User.findOne({email}).exec();
-        if( usernameCheck || emailCheck ) throw new Error(400);
+        if( !usernameCheck || !emailCheck ) throw new Error(400);
 
         // create user
         const newUser = await User.create({
@@ -39,7 +39,8 @@ module.exports.createUser = async( req, res ) => {
         if( !newUser ) throw new Error(400);
         newUser.save();
 
-        
+        const user = { _id: user._id, usrename: user.username };
+        const accessToken = createToken(user);
         res.cookie('token', accessToken, {
             httpOnly: true,
             maxAge: 60 * 60 * 25
